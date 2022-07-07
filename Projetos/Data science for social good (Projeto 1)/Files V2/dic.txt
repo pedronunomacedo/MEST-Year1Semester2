@@ -1,0 +1,152 @@
++--------------------------------------------------------------------+
+|                         DATA DICTIONARY                            |
++--------------------------------------------------------------------+
+
+Variable                    Description
+--------------------------  ------------------------------------------
+ODATEDW                     Origin Date. Date of donor's first gift
+                            to NGO YYMM format (Year/Month).
+                           
+STATE                       State abbreviation (a nominal/symbolic field)
+ZIP                         Zipcode (a nominal/symbolic field)
+MAILCODE                    Mail Code
+                            " "= Address is OK
+                            B = Bad Address
+                           
+DOB                         Date of birth (YYMM, Year/Month format.)
+                           
+MDMAUD                      The Major Donor Matrix code
+                            The codes describe frequency and amount of
+                            giving for donors who have given a $100+
+                            gift at any time in their giving history.
+                            An RFA (recency/frequency/monetary) field.
+
+                            The (current) concatenated version is a nominal 
+                            or symbolic field. The individual bytes could separately be 
+                            used as fields and refer to the following: 
+  
+                            First byte: Recency of Giving
+                              C=Current Donor
+                              L=Lapsed Donor
+                              I=Inactive Donor
+                              D=Dormant Donor
+                           
+                            2nd byte: Frequency of Giving
+                              1=One gift in the period of recency
+                              2=Two-Four gifts in the period of recency
+                              5=Five+ gifts in the period of recency
+                           
+                            3rd byte: Amount of Giving
+                              L=Less than $100(Low Dollar)
+                              C=$100-499(Core)
+                              M=$500-999(Major)
+                              T=$1,000+(Top)
+                           
+                            4th byte: Blank/meaningless/filler
+
+                            'X' indicates that the donor is not a major donor. 
+ 
+                            For more information regarding the RFA codes, see 
+                            the promotion history field definitions. 
+
+DOMAIN                      DOMAIN/Cluster code. A nominal or symbolic field. 
+                            could be broken down by bytes as explained below.  
+                           
+                            1st byte = Urbanicity level of the donor's neighborhood
+                              U=Urban
+                              C=City
+                              S=Suburban
+                              T=Town
+                              R=Rural
+                           
+                            2nd byte = Socio-Economic status of the neighborhood
+                              1 = Highest SES
+                              2 = Average SES
+                              3 = Lowest SES (except for Urban communities, where 
+                                  1 = Highest SES, 2 = Above average SES, 
+                                  3 = Below average SES, 4 = Lowest SES.) 
+                           
+CLUSTER                     CLUSTER
+                            Code indicating which cluster group the donor falls into.  
+                            Each cluster is unique in terms of socio-economic status, 
+                            urbanicty, ethnicity and a variety of other demographic 
+                            characteristics. A nominal or symbolic field.
+                           
+AGE                         Overlay Age 
+                            0 = missing
+                           
+AGEFLAG                     Age Flag
+                            E = Exact
+                            I = Inferred from Date of Birth Field
+                           
+HOMEOWNR                    Home Owner Flag
+                            H = Home owner 
+                            U = Unknown
+                           
+CHILD03                     Presence of Children age 0-3
+                            B = Both, F = Female, M = Male
+                           
+CHILD07                     Presence of Childern age 4-7
+CHILD12                     Presence of Childern age 8-12
+CHILD18                     Presence of Childern age 13-18
+                           
+NUMCHLD                     NUMBER OF CHILDREN
+INCOME                      HOUSEHOLD INCOME
+GENDER                      Gender
+                            M = Male
+                            F = Female
+                            U = Unknown
+                            J = Joint Account, unknown gender
+                           
+WEALTH1                     Wealth Rating
+HIT                         MOR Flag # HIT (Mail Order Response)
+                            Indicates total number of known times the donor has 
+                            responded to a mail order offer other than NGO's.
+                           
+--------------------------  -------------------------------------------------
+                            The following variables indicate the number of 
+                            known times the donor has responded to other 
+                            types of mail order offers.
+                           
+MBCRAFT                     Buy Craft Hobby
+MBGARDEN                    Buy Gardening
+MBBOOKS                     Buy Books
+MBCOLECT                    Buy Collectables
+MAGFAML                     Buy General Family Mags
+MAGFEM                      Buy Female Mags
+MAGMALE                     Buy Sports Mags
+PUBGARDN                    Gardening Pubs
+PUBCULIN                    Culinary Pubs
+PUBHLTH                     Health Pubs
+PUBDOITY                    Do It Yourself Pubs
+PUBNEWFN                    News / Finance Pubs
+PUBPHOTO                    Photography Pubs
+PUBOPP                      Opportunity Seekers Pubs
+                                                      
+--------------------------  -------------------------------------------------
+                            The following fields are summary variables from
+                            the giving history file. 
+
+RAMNTALL                    Dollar amount of lifetime gifts to date
+NGIFTALL                    Number of lifetime gifts to date
+CARDGIFT                    Number of lifetime gifts to card promotions to date 
+MINRAMNT                    Dollar amount of smallest gift to date               
+MINRDATE                    Date associated with the smallest gift to date
+MAXRAMNT                    Dollar amount of largest gift to date              
+MAXRDATE                    Date associated with the largest gift to date
+LASTGIFT                    Dollar amount of most recent gift            
+LASTDATE                    Date associated with the most recent gift               
+FISTDATE                    Date of first gift 
+NEXTDATE                    Date of second gift                    
+TIMELAG                     Number of months between first and second gift
+AVGGIFT                     Average dollar amount of gifts to date           
+
+--------------------------  -------------------------------------------------
+CONTROLN                    Control number (unique record identifier)
+
+TARGET_B                    Target Variable: Binary Indicator for Response to 
+                            Mailing
+--------------------------  -------------------------------------------------
+                           
+CLUSTER2                    Classic Cluster Code (a nominal symbolic field)
+GEOCODE2                    County Size Code 

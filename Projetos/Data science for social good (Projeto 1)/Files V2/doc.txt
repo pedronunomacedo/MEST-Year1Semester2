@@ -1,0 +1,164 @@
+
++--------------------------------------------------------------------+
+|                         DOCUMENTATION                              |
++--------------------------------------------------------------------+
+
+Table of Contents:       
+
+o GENERAL INSTRUCTIONS (for DOWNLOADS, RESULT RETURNS, etc.)
+o PROJECT OVERVIEW: A FUND RAISING NET RETURN PREDICTION MODEL
+
+
++--------------------------------------------------------------------+
+| GENERAL INSTRUCTIONS 					          | 
++--------------------------------------------------------------------+
+
+4. The data sets are in comma delimited format. The learning dataset
+<dev.csv> contains 28623 records and 51 fields. The first/header
+row of the data set contains the field names.
+
+The validation dataset <comp.csv> contains 28910 records and 479
+variables. The first/header row of the data set contains the field
+names.
+
+THE RECORDS IN THE VALIDATION DATASET ARE IDENTICAL TO THE RECORDS IN
+THE LEARNING DATASET EXCEPT THAT THE VALUES FOR THE TARGET/DEPENDENT
+VARIABLE IS MISSING.
+
+5. The data dictionary (for both the learning and the validation data
+set) is included in the file <dic.txt>. The fields in the data
+dictionary are ordered by the position of the fields in the learning
+data set. The dictionary for the validation data set is identical to
+the dictionary for the learning data set except the target field
+(target_B) are missing in the validation data set.
+
+6. Blanks in the string (or character) variables/fields and periods in
+the numeric variables correspond to missing values.
+
+7. Each record has a unique record identifier or index (field name:
+CONTROLN.) For each record, there are two target/dependent variable
+(TARGET_B). TARGET_B is a binary variable
+indicating whether or not the record responded to the promotion of
+interest ("97NK" mailing).
+
++--------------------------------------------------------------------+
+| PROJECT OVERVIEW: A Fund Raising Net Return Prediction Model       | 
++--------------------------------------------------------------------+
+
+BACKGROUND AND OBJECTIVES
+-------------------------
+
+Participants will demonstrate the performance of their
+tool by analyzing the results of one of PVA's recent fund raising
+appeals.  This mailing was sent to a total of 3.5 million donors
+who were on the database as of June 1997.  Everyone included in
+this mailing had made at least one prior donation to PVA.
+
+One group that is of particular interest to is "Lapsed" donors.
+These are individuals who made their last donation to 13 to 24
+months ago.  They represent an important group to PVA, since the
+longer someone goes without donating, the less likely they will be to
+give again.  Therefore, recapture of these former donors is a critical
+aspect of PVA's fund raising efforts.
+
+However, has found that there is often an inverse correlation
+between likelihood to respond and the dollar amount of the gift, so a
+straight response model (a classification or discrimination task) will
+most likely net only very low dollar donors.  High dollar donors will
+fall into the lower deciles, which would most likely be suppressed
+from future mailings.  The lost revenue of these suppressed donors
+would then offset any gains due to the increased response rate of the
+low dollar donors.
+
+Therefore, to improve the cost-effectiveness of future direct
+marketing efforts, wishes to develop a model that will help them
+maximize the net revenue (a regression or estimation task) generated
+from future renewal mailings to Lapsed donors.
+
+POPULATION
+----------
+
+The population for this analysis will be Lapsed donors who
+received the June '97 renewal mailing (appeal code "97NK").
+Therefore, the analysis data set contains a subset of the total
+universe who received the mailing.
+
+The analysis file includes all Lapsed donors who received the
+mailing, with responders to the mailing marked with a flag in the
+TARGET_B field.
+
+The overall response rate for this direct mail promotion is 5.1%.  
+
++--------------------------------------------------------------------+
+| DATA SOURCES and ORDER & TYPE OF THE VARIABLES IN THE DATA SETS    |
++--------------------------------------------------------------------+
+
+The dataset includes:
+
+o 24 months of detailed promotion and giving history (covering the
+  period 12 to 36 months prior to the "97NK" mailing)
+
+o A summary of the promotions sent to the donors over the most recent
+  12 months prior to the "97NK" mailing (by definition, none of these
+  donors responded to any of these promotions)
+
+o Summary variables reflecting each donor's lifetime giving history
+  (e.g., total # of donations prior to "97NK" mailing, total $ amount
+  of the donations, etc.)
+
+o Overlay demographics, including a mix of household and area level
+  data
+
+o All other available data from the database (e.g., date of first
+  gift, state, origin source, etc.)
+
+The fields are described in greater detail in the data dictionary file
+<filename: dic.txt>.
+
+The name of the variables in the learning and validation data sets is
+included in each file as the top (header) record. 
+        
++--------------------------------------------------------------------+
+| DATA (PRE)PROCESSING                                               |
++--------------------------------------------------------------------+
+
+General 
+-------
+
+o The field CONTROLN is a unique record identifier (an index) and
+should not be used in modeling
+
+o Response flag (field name: TARGET_B) indicates whether or not the
+lapsed donor responded to the campaign. THIS FIELD SHOULD NOT BE USED
+DURING MODEL BUILDING.
+
+o Blanks in string or character variables correspond to missing
+values.  Periods and/or blanks in the numeric variables correspond to
+missing values.
+
+Data preprocessing tasks include the following:
+
+Time Frame and Date Fields
+--------------------------
+
+This mailing was mailed to a total of 3.5 million donors who were
+on the database as of June 1997. All information contained in the
+analysis dataset reflects the donor status prior to 6/97 (except the
+gift receipt dates, which will follow the promotion dates.) This date
+could be used as the "end date" or "rerefence date" in the calculation
+of "number of months since" variables.
+
++--------------------------------------------------------------------+
+| TERMINOLOGY-GLOSSARY                                               |
++--------------------------------------------------------------------+
+
+[GLOSSARY]
+
+o attribute = field = variable = feature
+o responders = targets
+o non-reponders = non-targets 
+o output = target = dependent variable
+o inputs = independent variables
+o analysis file = analysis sample = combined learning and validation 
+  files 
+
